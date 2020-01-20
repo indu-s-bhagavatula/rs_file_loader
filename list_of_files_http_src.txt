@@ -1,0 +1,14 @@
+https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv
+https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv
+https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv
+https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv
+http://samplecsvs.s3.amazonaws.com/SalesJan2009.csv
+http://samplecsvs.s3.amazonaws.com/TechCrunchcontinentalUSA.csv
+http://samplecsvs.s3.amazonaws.com/SacramentocrimeJanuary2006.csv
+https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2018-financial-year-provisional/Download-data/annual-enterprise-survey-2018-financial-year-provisional-csv.csv
+https://www.stats.govt.nz/assets/Uploads/New-Zealand-business-demography-statistics/New-Zealand-business-demography-statistics-At-February-2019/Download-data/geographic-units-by-industry-and-statistical-area-2000-19-descending-order.zip
+
+# Zip files
+http://eforexcel.com/wp/wp-content/uploads/2017/07/100-Sales-Records.zip
+http://eforexcel.com/wp/wp-content/uploads/2017/07/1000000%20Sales%20Records.zip
+http://eforexcel.com/wp/wp-content/uploads/2017/07/1500000%20Sales%20Records.zip

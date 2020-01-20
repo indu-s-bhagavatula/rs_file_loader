@@ -1,0 +1,46 @@
+Issue was happening when trying to upload the file when creating the S3 client.
+
+$ python3 ./stage_data.py '/tmp/cities.csv' 'indubh-redshift-bulkdata' 'kumo/test_data/rs_file_loader' 'us-east-1'
+Traceback (most recent call last):
+  File "./stage_data.py", line 78, in <module>
+    file_uploaded=upload_to_s3(localfilename, bucket, s3_prefix, region)
+  File "./stage_data.py", line 30, in upload_to_s3
+    s3_client = boto3.client('s3', region_name=region)
+  File "/home/ec2-user/python_src/rs_file_loader/boto3/__init__.py", line 91, in client
+    return _get_default_session().client(*args, **kwargs)
+  File "/home/ec2-user/python_src/rs_file_loader/boto3/session.py", line 263, in client
+    aws_session_token=aws_session_token, config=config)
+  File "/home/ec2-user/python_src/rs_file_loader/botocore/session.py", line 835, in create_client
+    client_config=config, api_version=api_version)
+  File "/home/ec2-user/python_src/rs_file_loader/botocore/client.py", line 77, in create_client
+    cls = self._create_client_class(service_name, service_model)
+  File "/home/ec2-user/python_src/rs_file_loader/botocore/client.py", line 107, in _create_client_class
+    base_classes=bases)
+  File "/home/ec2-user/python_src/rs_file_loader/botocore/hooks.py", line 356, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/home/ec2-user/python_src/rs_file_loader/botocore/hooks.py", line 228, in emit
+    return self._emit(event_name, kwargs)
+  File "/home/ec2-user/python_src/rs_file_loader/botocore/hooks.py", line 211, in _emit
+    response = handler(**kwargs)
+  File "/home/ec2-user/python_src/rs_file_loader/boto3/utils.py", line 61, in _handler
+    module = import_module(module)
+  File "/home/ec2-user/python_src/rs_file_loader/boto3/utils.py", line 52, in import_module
+    __import__(name)
+  File "/home/ec2-user/python_src/rs_file_loader/boto3/s3/inject.py", line 15, in <module>
+    from boto3.s3.transfer import create_transfer_manager
+  File "/home/ec2-user/python_src/rs_file_loader/boto3/s3/transfer.py", line 127, in <module>
+    from s3transfer.exceptions import RetriesExceededError as \
+  File "/home/ec2-user/python_src/rs_file_loader/s3transfer/__init__.py", line 134, in <module>
+    import concurrent.futures
+  File "/home/ec2-user/python_src/rs_file_loader/concurrent/futures/__init__.py", line 8, in <module>
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/home/ec2-user/python_src/rs_file_loader/concurrent/futures/_base.py", line 414
+    raise exception_type, self._exception, self._traceback
+                        ^
+SyntaxError: invalid syntax
+
+
+Troubleshooting: Issue was confined to only 3.4.3, it wasn't happening in 2.7.10
+Fixed the issue by running :
+rm -rf * ./concurrent/futures
+pip install futures --target ./concurrent/
