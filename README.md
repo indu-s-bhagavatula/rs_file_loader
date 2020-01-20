@@ -1,23 +1,24 @@
-Load specifier
+Load specifier:
+```json
 {
   "source":{
-    "format": "string", #Possible values - csv
-    "sourceProtocol" : "string", #Possible values - http, https
-    "location" : "string" #location of the file -   
+    "format": "string", // Possible values - csv
+    "sourceProtocol" : "string", // Possible values - http, https
+    "location" : "string" // location of the file -   
   },
   "stg_data":{
-    "s3bckt": "string", #S3 bucket
-    "s3prefix": "string" #S3 keyprefix
+    "s3bckt": "string", // S3 bucket
+    "s3prefix": "string" // S3 keyprefix
   }
   "destination":{
-    "clusterendpoint" : "string", #Full DNS Endpoint of the cluster
-    "rsIamRoleArn" : "string", #Redshift IAM Role that is attached to the cluster to be used to in the COPY command
-    "secretid": "string", #Identifier of the secret
-    "secretregion" : "string" #Region in which AWS Secret is stored.
+    "clusterendpoint" : "string", // Full DNS Endpoint of the cluster
+    "rsIamRoleArn" : "string", // Redshift IAM Role that is attached to the cluster to be used to in the COPY command
+    "secretid": "string", // Identifier of the secret
+    "secretregion" : "string" // Region in which AWS Secret is stored.
   },
   "mode": "DROP|TRUNCATE|APPEND"
 }
-
+```
 Makes it easy to CSV file from the specified location into the Redshift cluster.
 # Modules
 ## Downloader module
