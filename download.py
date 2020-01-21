@@ -19,18 +19,31 @@ def download_file_httpsrc(url, local_filename):
     logger.info('Startted downloading file from ' + url +
         ' . Downloading to ' + local_filename )
     download_start=dt.now()
-    urllib.request.urlretrieve(url, local_filename)
-    download_end=dt.now()
-    logger.debug(
-        str.format('Total time taken to download the file'
-            ' {} microseconds'
-            ' and file size is {} bytes',
-            (download_end-download_start).microseconds,
-            (os.path.getsize(local_filename))
+    try:
+        urllib.request.urlretrieve(url, local_filename)
+        download_end=dt.now()
+        logger.debug(
+            str.format('Total time taken to download the file'
+                ' {} microseconds'
+                ' and file size is {} bytes',
+                (download_end-download_start).microseconds,
+                (os.path.getsize(local_filename))
+            )
         )
-    )
-    logger.info('Finished downloading file from ' + url +
-        ' . Downloaded file ' + local_filename )
+        logger.info('Finished downloading file from ' + url +
+            ' . Downloaded file ' + local_filename )
+    except Exception as e:
+        logger.error(
+            str.join(
+                ' ',
+                [
+                    'Error occurred while downloading the file ' + url + ' ',
+                    str(e)
+                ]
+            ) , 
+            exc_info=True
+        )
+        exit(-1)
 
 def extract_file_from_url(url):
     """ Extracts file name from the given http url

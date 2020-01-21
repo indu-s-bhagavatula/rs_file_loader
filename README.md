@@ -3,7 +3,7 @@ Load specifier:
 {
   "source":{
     "format": "string", // Possible values - csv
-    "sourceProtocol" : "string", // Possible values - http, https
+    "source_protocol" : "string", // Possible values - http, https
     "location" : "string" // location of the file -   
   },
   "stg_data":{
@@ -39,24 +39,25 @@ Makes use of AWS Secret Manager to retrieve the credentials for the cluster to r
 aws s3 sync rs_file_loader s3://indubh-redshift-bulkdata/kumo/rs_file_loader
 
 
-# On EC2 box
-cd $HOME/myapps/rs_file_loader
+# On EC2 box/Cloud9 Desktop
+cd $HOME/environment/githome/rs_file_loader
 rm -rf *
-aws s3 sync s3://indubh-redshift-bulkdata/kumo/rs_file_loader .
+cd $HOME/environment/githome
+git clone https://github.com/indu-s-bhagavatula/rs_file_loader.git 
+cd rs_file_loader
 pip install -r requirements.txt --target .
 
 # Sync logging configuration
-cd $HOME/myapps/rs_file_loader
+cd $HOME/environment/githome/rs_file_loader
 rm -rf ./config/*
 aws s3 sync s3://indubh-redshift-bulkdata/kumo/rs_file_loader/config ./config
 
 # fix futures module issue
-cd $HOME/myapps/rs_file_loader
+cd $HOME/environment/githome/rs_file_loader
 rm -rf ./concurrent/futures
 pip install futures --target ./concurrent/
 
-
-rm $HOME/
+# Test scripts
 python3 ./download.py 'https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv'
 python3 ./download.py 'http://samplecsvs.s3.amazonaws.com/SalesJan2009.csv'
 

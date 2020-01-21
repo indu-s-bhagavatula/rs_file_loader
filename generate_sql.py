@@ -14,14 +14,14 @@ logger = logging.getLogger()
 DIALECT='postgresql'
 
 def generate_sql_from_csv(local_filename, table_name, schema_name
-    , uppercase_allowed='None'):
+    , upper_case_allowed='None'):
     """ Use agate to parse the SQL file and generate the SQL for PostgreSQL
     dialect.
 
     :param local_filename: File to be parsed
     :param table_name: Table name in the database
     :param schema_name: Schema name in the database
-    :param uppercase_allowed: If set to 'y' then the column names generated
+    :param upper_case_allowed: If set to 'y' then the column names generated
     in the extracted SQL will be allowed to retain upper case letters otherwise
     everything will be converted to lowercase.
     """
@@ -37,7 +37,7 @@ def generate_sql_from_csv(local_filename, table_name, schema_name
             (download_end-download_start).microseconds
         )
     )
-    if (uppercase_allowed=='y'):
+    if (upper_case_allowed=='y'):
         logger.info(
             str.format("""Generated SQL statement :\n{}""",
             sql_statement
@@ -56,13 +56,13 @@ if __name__=='__main__':
     local_filename=sys.argv[1]
     table_name=sys.argv[2]
     schema_name=sys.argv[3]
-    uppercase_allowed='n'
+    upper_case_allowed='n'
     if(len(sys.argv)>=5 and sys.argv[4]=='y'):
-        uppercase_allowed='y'
+        upper_case_allowed='y'
 
     sql_statement=generate_sql_from_csv(
         local_filename,
         table_name,
         schema_name,
-        uppercase_allowed
+        upper_case_allowed
     )
